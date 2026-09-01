@@ -10,7 +10,7 @@ pipeline{
         }
         stage("Install"){
             steps{
-                echo "Instalando dependências"
+                sh 'npm install'
             }
         }
         stage("Build"){
