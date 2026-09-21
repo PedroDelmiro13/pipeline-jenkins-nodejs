@@ -68,3 +68,55 @@ O projeto pode ser utilizado em um pipeline executando as etapas:
 ```text
 Checkout → npm install → npm run build → npm test → npm start
 ```
+
+## GitHub Actions
+
+O projeto também possui uma pipeline utilizando GitHub Actions.
+
+O workflow executa as seguintes etapas:
+
+1. Checkout do código
+2. Configuração do Node.js
+3. Instalação das dependências
+4. Build da aplicação
+5. Execução dos testes
+6. Análise SAST com Semgrep
+7. Inicialização da aplicação
+8. Análise DAST com OWASP ZAP
+
+### SAST - Semgrep
+
+O Semgrep realiza uma análise estática do código-fonte.
+
+Essa etapa verifica possíveis vulnerabilidades e padrões inseguros
+sem precisar executar a aplicação.
+
+Foram utilizadas regras de segurança e recomendações relacionadas
+ao OWASP Top 10.
+
+### DAST - OWASP ZAP
+
+O OWASP ZAP realiza uma análise dinâmica da aplicação.
+
+Diferente do SAST, o DAST é executado com a aplicação em funcionamento,
+enviando requisições para identificar possíveis vulnerabilidades
+durante a execução.
+
+### Fluxo da pipeline
+
+```text
+Checkout
+   ↓
+Setup Node
+   ↓
+Instalação das dependências
+   ↓
+Build
+   ↓
+Testes
+   ↓
+SAST - Semgrep
+   ↓
+Inicialização da aplicação
+   ↓
+DAST - OWASP ZAP
